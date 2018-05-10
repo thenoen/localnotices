@@ -1,0 +1,31 @@
+<p>
+  input-form works!
+</p>
+
+<div class="container">
+
+  <div class="row">
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" (keyup)="onKey($event)"></textarea>
+  </div>
+
+
+  <div class="row m-3">
+
+    <div class="col justify-content-center">
+      <ngb-datepicker #dpValidFrom [(ngModel)]="model" (navigate)="validFromDate = $event.next"></ngb-datepicker>
+      <div class="d-flex p-2 justify-content-center">
+        <ngb-timepicker [(ngModel)]="validFromTime"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="col justify-content-center">
+      <ngb-datepicker #dpValidUntil [(ngModel)]="model" (navigate)="validUntilDate = $event.next"></ngb-datepicker>
+      <div class="d-flex p-2 justify-content-center">
+        <ngb-timepicker class="justify-content-center" [(ngModel)]="validUntilTime"></ngb-timepicker>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button class="btn btn-primary" (click)="logData()">Submit</button>
