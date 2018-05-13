@@ -20,7 +20,7 @@ public class NoticeController {
 		// return "Hello " + name + "!";
 	}
 
-	@RequestMapping(value = "/createNotice", method = RequestMethod.POST, produces = {MediaType.TEXT_PLAIN_VALUE})
+	@RequestMapping(value = "/create", method = RequestMethod.POST, produces = {MediaType.TEXT_PLAIN_VALUE})
 	public String createNotice(@RequestBody Notice notice) {
 		return "Create notice: \"" + notice.getText() + "\" - validity: " + notice.getValidFrom() + " - " + notice.getValidUntil();
 	}

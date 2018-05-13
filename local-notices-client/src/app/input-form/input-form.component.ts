@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {NgbDateStruct, NgbTimeStruct} from "@ng-bootstrap/ng-bootstrap";
+import { Component, OnInit } from '@angular/core';
+import { NgbDateStruct, NgbTimeStruct } from "@ng-bootstrap/ng-bootstrap";
 import { ServerApiServiceService } from '../service/server-api-service.service';
+import { Notice } from '../model/Notice';
 
 @Component({
   selector: 'app-input-form',
@@ -14,6 +15,8 @@ export class InputFormComponent implements OnInit {
 
   validUntilDate: NgbDateStruct;
   validUntilTime: NgbTimeStruct;
+
+  noticeTextInput: any;
 
   constructor(private serverApiService: ServerApiServiceService) {
     var d: Date = new Date();
@@ -29,12 +32,8 @@ export class InputFormComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  onKey(event) {
-    console.log(event);
-    console.log(this.validFromDate);
-    console.log(this.validFromTime);
-    console.log(this.validFromTime.hour);
+  onKey(inputValue: string) {
+    console.log(inputValue);
   }
 
   logData() {
@@ -47,6 +46,29 @@ export class InputFormComponent implements OnInit {
     d.setMilliseconds(0);
 
     console.log(d);
-    this.serverApiService.createNewNotice();
+
+    if (this.noticeTextInput == null) {
+      this.noticeTextInput = "";
+    }
+
+    let notice: Notice = new Notice(
+      this.noticeTextInput,
+      this.createDateFromInput(this.validFromDate, this.validFromTime),
+      this.createDateFromInput(this.validUntilDate, this.validUntilTime)
+    );
+    this.serverApiService.createNewNotice(notice);
+  }
+
+  private createDateFromInput(dateInput: NgbDateStruct, timeInput: NgbTimeStruct): Date {
+    let d: Date = new Date();
+
+    d.setFullYear(dateInput.year);
+    d.setMonth(dateInput.month);
+    d.setHours(timeInput.hour);
+    d.setMinutes(timeInput.minute);
+    d.setSeconds(0);
+    d.setMilliseconds(0);
+
+    return d;
   }
 }

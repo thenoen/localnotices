@@ -10,12 +10,17 @@ export class ServerApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-  createNewNotice() {
+  getListOfNotices() {
     this.http.get("/notice/list",  {responseType: 'text'})
       .subscribe(data => this.log(data),
         err => console.log(err));
 
     this.http.get<ServerApiResponse>("/notice/list")
+    .subscribe(data => console.log(data));
+  }
+
+  createNewNotice(notice : Notice) {
+    this.http.post("/notice/create", notice, {responseType: 'text'})
     .subscribe(data => console.log(data));
   }
 

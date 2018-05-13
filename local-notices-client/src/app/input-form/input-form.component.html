@@ -5,7 +5,7 @@
 <div class="container">
 
   <div class="row">
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" (keyup)="onKey($event)"></textarea>
+    <textarea #textInput [(ngModel)]="noticeTextInput" class="form-control" rows="3" (keyup)="onKey(textInput.value)"></textarea>
   </div>
 
 
