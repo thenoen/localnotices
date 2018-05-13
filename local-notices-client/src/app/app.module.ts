@@ -6,6 +6,8 @@ import { InputFormComponent } from './input-form/input-form.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ServerApiServiceService } from './service/server-api-service.service';
 
 @NgModule({
   declarations: [
@@ -14,10 +16,11 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [ServerApiServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

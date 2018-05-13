@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbDateStruct, NgbTimeStruct} from "@ng-bootstrap/ng-bootstrap";
+import { ServerApiServiceService } from '../service/server-api-service.service';
 
 @Component({
   selector: 'app-input-form',
@@ -14,7 +15,7 @@ export class InputFormComponent implements OnInit {
   validUntilDate: NgbDateStruct;
   validUntilTime: NgbTimeStruct;
 
-  constructor() {
+  constructor(private serverApiService: ServerApiServiceService) {
     var d: Date = new Date();
     this.validFromTime = <NgbTimeStruct>{};
     this.validFromTime.hour = d.getHours();
@@ -46,5 +47,6 @@ export class InputFormComponent implements OnInit {
     d.setMilliseconds(0);
 
     console.log(d);
+    this.serverApiService.createNewNotice();
   }
 }

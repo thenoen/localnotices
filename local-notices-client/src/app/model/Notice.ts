@@ -1,4 +1,4 @@
-class Notice {
+export class Notice {
   private validFrom: Date;
   private validUntil: Date;
   private text: string;

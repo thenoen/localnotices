@@ -1,6 +1,9 @@
 package sk.thenoen.localnotices.localnoticesserver.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import sk.thenoen.localnotices.localnoticesserver.model.Notice;
@@ -10,8 +13,11 @@ import sk.thenoen.localnotices.localnoticesserver.model.Notice;
 public class NoticeController {
 
 	@RequestMapping("/list")
-	public String list(@RequestParam(value = "name", required = false) String name) {
-		return "Hello " + name + "!";
+	public Map<String, Object> list(@RequestParam(value = "name", required = false) String name) {
+		Map<String, Object> response = new HashMap<>();
+		response.put("success", true);
+		return response;
+		// return "Hello " + name + "!";
 	}
 
 	@RequestMapping(value = "/createNotice", method = RequestMethod.POST, produces = {MediaType.TEXT_PLAIN_VALUE})
